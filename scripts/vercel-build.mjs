@@ -19,7 +19,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const API_DIR = join(ROOT, "artifacts", "api-server");
 const UI_DIST = join(ROOT, "artifacts", "audit-maroc", "dist", "public");
-const OUT = join(ROOT, ".vercel", "output");
+// Vercel reads .vercel/output from the project Root Directory, which may be
+// the repo root or artifacts/audit-maroc: write it where the build was started.
+const OUT = join(process.cwd(), ".vercel", "output");
 const FUNC = join(OUT, "functions", "api", "index.func");
 
 function run(command) {
