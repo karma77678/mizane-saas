@@ -1,5 +1,6 @@
 {
-  "buildCommand": "pnpm --filter audit-maroc build",
-  "outputDirectory": "artifacts/audit-maroc/dist/public",
-  "framework": "vite"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "node scripts/vercel-build.mjs"
 }
