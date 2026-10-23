@@ -1,0 +1,28 @@
+{
+  "name": "workspace",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "build:mizan-source-zip": "node ./scripts/build-mizan-source-zip.mjs",
+    "typecheck:libs": "tsc --build",
+    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
+    "db:push": "pnpm --filter @workspace/db run push",
+    "dev:api": "pnpm --filter @workspace/api-server run dev",
+    "dev:web": "pnpm --filter @workspace/audit-maroc run dev",
+    "start": "pnpm --filter @workspace/api-server run start",
+    "check:env": "node ./scripts/check-env.mjs",
+    "db:ping": "node ./lib/db/test-supabase.cjs",
+    "test": "node --test artifacts/api-server/test/http-contract.test.mjs artifacts/api-server/test/ai-correction.test.mjs artifacts/api-server/test/ai-review.test.mjs artifacts/api-server/test/semantic-review.test.mjs artifacts/api-server/test/groq-usage.test.mjs artifacts/api-server/test/hybrid-audit.test.mjs artifacts/audit-maroc/test/import-logic.test.mjs artifacts/audit-maroc/test/audit-engine.test.mjs artifacts/audit-maroc/test/semantic.test.mjs",
+    "test:db": "node --test artifacts/api-server/test/database.test.mjs artifacts/api-server/test/hybrid-audit.db.test.mjs",
+    "test:live": "node --test artifacts/api-server/test/hybrid-audit.live.test.mjs"
+  },
+  "private": true,
+  "dependencies": {
+    "@replit/connectors-sdk": "^0.4.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.6",
+    "typescript": "~5.9.3"
+  }
+}

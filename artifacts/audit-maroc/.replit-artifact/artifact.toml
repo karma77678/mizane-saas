@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Mizan — Audit comptable marocain"
+description = "Application web locale d’analyse des grands livres, journaux et balances marocains : import de fichiers, contrôles comptables et fiscaux explicables, propositions de correction révisables et exports de rapports et de code source."
+version = "1.0.0"
+id = "artifacts/audit-maroc"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19711
+
+[services.development]
+run = "pnpm --filter @workspace/audit-maroc run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/audit-maroc", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/audit-maroc/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19711"
+BASE_PATH = "/"
