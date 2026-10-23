@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": "artifacts/audit-maroc/dist",
+  "framework": "vite"
+}
